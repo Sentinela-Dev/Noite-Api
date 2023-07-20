@@ -28,6 +28,16 @@ class UserModel
     }
   end
 
+  def jwt_infos
+    {
+      name:,
+      email:,
+      email_confirmed:,
+      created_at:,
+      updated_at:
+    }
+  end
+
   def to_db
     {
       name:,

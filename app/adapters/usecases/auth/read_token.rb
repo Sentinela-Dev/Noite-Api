@@ -3,9 +3,6 @@
 require 'jwt'
 require './app/adapters/usecases/user/index'
 
-ALGORITHM = ENV['JWT_ALGORITHM']
-SECRET_KEY = ENV['JWT_SECRET_KEY']
-
 module Auth
   ## ReadToken
   class ReadToken
@@ -14,7 +11,7 @@ module Auth
     end
 
     def call
-      JWT.decode(@token, SECRET_KEY, true, { algorithm: ALGORITHM })
+      JWT.decode(@token, Auth::SECRET_KEY, true, { algorithm: Auth::ALGORITHM })
     end
   end
 end
