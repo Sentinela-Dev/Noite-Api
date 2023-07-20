@@ -20,4 +20,5 @@ class UserRepository
   def insert(user)
     @collection.insert_one(user)
   end
+
 end
