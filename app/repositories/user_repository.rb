@@ -5,6 +5,8 @@ require './app/models/user_model'
 
 ## UserRepository
 class UserRepository
+  attr_reader :collection
+
   def initialize
     client = MongoDatabase.database_connection
     @collection = client[:users]
