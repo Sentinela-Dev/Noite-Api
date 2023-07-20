@@ -23,3 +23,5 @@ group :development do
   gem 'rack-test', '~> 2.1'
   gem 'rspec', '~> 3.12'
 end
+
+gem 'simplecov', require: false, group: :test
