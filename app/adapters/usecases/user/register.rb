@@ -14,6 +14,9 @@ module User
 
     def call
       user = @user.new(@params)
+
+      can_register? user
+
       user.password = Encrypt::Encode.new(password: user.password).call
       user.created_at = Time.now.utc
       user.updated_at = Time.now.utc
@@ -21,6 +24,15 @@ module User
 
       @user_repository.insert(user.to_db)
       @user_repository.find_by_email(user.email)
+    end
+
+    private
+
+    def can_register?(user)
+      # raise StandardError, "Product '#{@product.name}' out of stock" if @secure_stock_capacity <= 0
+
+      # raise StandardError, 'Email alwary exists'
+      raise StandardError, 'Email alwary exists' if @user_repository.email_exists?(user.email)
     end
   end
 end

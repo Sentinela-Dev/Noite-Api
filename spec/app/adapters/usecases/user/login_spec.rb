@@ -5,12 +5,12 @@ require './app/models/user_model'
 require './app/repositories/user_repository'
 
 RSpec.describe User::Login do
-  let(:valid_user) do
-    {
-      'name': 'John',
-      'email': 'john@email.com',
-      'password': 'something'
-    }
+  before(:all) do
+    @user = User::Register.new(params: {
+                                 'name': 'John',
+                                 'email': 'john@email.com',
+                                 'password': 'something'
+                               }).call
   end
 
   after(:all) do
@@ -19,16 +19,14 @@ RSpec.describe User::Login do
 
   context 'Login' do
     it 'all correct' do
-      registered_user = User::Register.new(params: valid_user).call
-      user = User::Login.new(email: valid_user[:email], password: valid_user[:password]).call
+      user = User::Login.new(email: 'john@email.com', password: 'something').call
 
-      expect(registered_user.email).to eq(user.email)
-      expect(registered_user.id).to eq(user.id)
+      expect(@user.email).to eq(user.email)
+      expect(@user.id).to eq(user.id)
     end
 
     it 'incorrect login' do
-      User::Register.new(params: valid_user).call
-      user = User::Login.new(email: valid_user[:email], password: 'salveamigao').call
+      user = User::Login.new(email: 'john@email.com', password: 'salveamigao').call
 
       expect(user).to eq(nil)
     end
