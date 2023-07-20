@@ -29,9 +29,6 @@ module User
     private
 
     def can_register?(user)
-      # raise StandardError, "Product '#{@product.name}' out of stock" if @secure_stock_capacity <= 0
-
-      # raise StandardError, 'Email alwary exists'
       raise StandardError, 'Email alwary exists' if @user_repository.email_exists?(user.email)
     end
   end
