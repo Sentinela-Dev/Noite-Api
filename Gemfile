@@ -21,6 +21,7 @@ gem 'bcrypt', '~> 3.1'
 group :development do
   gem 'byebug', '~> 11.1'
   gem 'rack-test', '~> 2.1'
+  gem 'rerun'
   gem 'rspec', '~> 3.12'
 end
 
