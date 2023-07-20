@@ -31,4 +31,16 @@ RSpec.describe User::Login do
       expect(user).to eq(nil)
     end
   end
+
+  context 'invalid login' do
+    it 'email empty' do
+      user = User::Login.new(email: '', password: 'something')
+      expect { user.call }.to raise_error(StandardError, 'No user founded with email ')
+    end
+
+    it 'not existent email' do
+      user = User::Login.new(email: 'imdoesnotexist', password: 'something')
+      expect { user.call }.to raise_error(StandardError, 'No user founded with email imdoesnotexist')
+    end
+  end
 end

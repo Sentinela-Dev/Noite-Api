@@ -5,8 +5,7 @@ require './app/adapters/usecases/auth/index'
 ## AuthService
 module AuthHelper
   def current_user(request)
-    token = request.env['http_authorization']&.split(' ')&.last
-    token ||= request.cookies['jwt_token']
+    token = request.env['HTTP_AUTHORIZATION']&.split(' ')&.last
 
     Auth::GetUser.new(token:).call
   end

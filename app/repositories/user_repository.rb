@@ -12,6 +12,14 @@ class UserRepository
     @collection = client[:users]
   end
 
+  def find_by_id(id)
+    result = @collection.find({ "_id": BSON::ObjectId(id) }).limit(1).first
+
+    return nil unless result
+
+    UserModel.new(result)
+  end
+
   def find_by_email(email)
     result = @collection.find(email:).sort(created_at: -1).limit(1).first
     return nil unless result
@@ -20,7 +28,11 @@ class UserRepository
   end
 
   def insert(user)
-    @collection.insert_one(user)
+    # TODO: Validate required fields
+    result = @collection.insert_one(user)
+    return nil unless result
+
+    find_by_id(result.inserted_id)
   end
 
   def email_exists?(email)

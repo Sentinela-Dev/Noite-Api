@@ -11,7 +11,12 @@ module Auth
     end
 
     def call
-      JWT.decode(@token, Auth::SECRET_KEY, true, { algorithm: Auth::ALGORITHM })
+      jwt = JWT.decode(@token, Auth::SECRET_KEY, true, { algorithm: Auth::ALGORITHM })[0]
+      yet_valid = Time.at(jwt['timestamp']) + MAX_LIVE > Time.now
+
+      raise 'expired token' unless yet_valid
+
+      jwt
     end
   end
 end

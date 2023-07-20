@@ -10,10 +10,10 @@ module Auth
     end
 
     def call
-      jwt_user = Auth::ReadToken.new(token: @token).call[0]
-      User::Select.new.fromId(jwt_user[:id])
-    rescue StandardError
-      puts $!
+      jwt_user = Auth::ReadToken.new(token: @token).call
+      User::Select.new.fromId(jwt_user['id']['$oid'])
+    rescue StandardError => e
+      puts e
       nil
     end
   end

@@ -30,11 +30,21 @@ class UserModel
 
   def jwt_infos
     {
+      id:,
       name:,
       email:,
       email_confirmed:,
       created_at:,
       updated_at:
+    }
+  end
+
+  def public_infos
+    {
+      name:,
+      email:,
+      email_confirmed:,
+      created_at:
     }
   end
 
