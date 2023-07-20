@@ -24,6 +24,22 @@ class FlowRepository
     FlowModel.new(result)
   end
 
+  def find_all_by_user(user)
+    results = @collection.find({
+                                 "$or": [
+                                   { owner: user.email },
+                                   { can_access: user.email }
+                                 ]
+                               })
+
+    return [] unless results
+    return [] if results.count == 0
+
+    results.map do |result|
+      FlowModel.new(result)
+    end
+  end
+
   def find_flow(flow_id, user)
     result = @collection.find({
                                 "$or": [
