@@ -2,7 +2,7 @@
 
 require './app/models/user_model'
 require './app/repositories/user_repository'
-require './app/adapters/usecases/encrypt/index'
+require './app/usecases/encrypt/index'
 
 module User
   class Login

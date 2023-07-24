@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require './app/adapters/usecases/user/index'
+require './app/usecases/user/index'
 require './app/repositories/user_repository'
-require './app/adapters/usecases/auth/index'
+require './app/usecases/auth/index'
 
 RSpec.describe Auth::GenToken do
   let(:user) do

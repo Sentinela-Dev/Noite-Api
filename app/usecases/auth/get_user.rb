@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './app/adapters/usecases/user/select'
+require './app/usecases/user/select'
 
 module Auth
   ## GetUser

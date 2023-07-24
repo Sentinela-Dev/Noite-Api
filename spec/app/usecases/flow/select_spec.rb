@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require './app/adapters/usecases/flow/index'
-require './app/adapters/usecases/user/index'
+require './app/usecases/der_flow/index'
+require './app/usecases/user/index'
 
 RSpec.describe Flow::Select do
   before(:all) do
@@ -49,7 +49,7 @@ RSpec.describe Flow::Select do
 
   after(:all) do
     UserRepository.new.collection.drop
-    FlowRepository.new.collection.drop
+    DerFlowRepository.new.collection.drop
   end
 
   context 'Single Flow' do

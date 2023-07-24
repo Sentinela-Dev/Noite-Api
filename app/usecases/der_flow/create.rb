@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require './app/models/flow_model'
-require './app/repositories/flow_repository'
+require './app/repositories/der_flow_repository'
 
 module Flow
   ## Create
   class Create
-    def initialize(params:, flow: FlowModel, flow_repository: FlowRepository)
+    def initialize(params:, flow: FlowModel, flow_repository: DerFlowRepository)
       @params = params
       @flow = flow
       @flow_repository = flow_repository.new

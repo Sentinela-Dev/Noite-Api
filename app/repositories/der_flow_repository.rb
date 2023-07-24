@@ -3,7 +3,7 @@
 require './app/models/flow_model'
 
 ## UserRepository
-class FlowRepository
+class DerFlowRepository
   attr_reader :collection
 
   def initialize

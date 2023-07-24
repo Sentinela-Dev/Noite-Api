@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './app/adapters/usecases/user/index'
+require './app/usecases/user/index'
 require './app/models/user_model'
 require './app/repositories/user_repository'
 
