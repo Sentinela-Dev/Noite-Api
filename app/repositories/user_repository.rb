@@ -29,12 +29,12 @@ class UserRepository
   end
 
   def insert(user)
-    Changeset::Validate.new(UserModel, user)
-                       .cast(:email, :name, :password)
-                       .presence(%i[email name password])
-                       .call
-    # TODO: Validate required fields
-    result = @collection.insert_one(user)
+    u = Changeset::Validate.new(UserModel, user)
+                           .cast(:email, :name, :password)
+                           .presence(%i[email name password])
+                           .call
+
+    result = @collection.insert_one(u.to_hash)
     return nil unless result
 
     find_by_id(result.inserted_id)
