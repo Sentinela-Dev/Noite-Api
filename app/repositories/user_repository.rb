@@ -2,6 +2,7 @@
 
 require './config/mongo_database'
 require './app/models/user_model'
+require './lib/changeset/index'
 
 ## UserRepository
 class UserRepository
@@ -28,6 +29,10 @@ class UserRepository
   end
 
   def insert(user)
+    Changeset::Validate.new(UserModel, user)
+                              .cast(:email, :name)
+                              .presence(%i[email name])
+                              .call
     # TODO: Validate required fields
     result = @collection.insert_one(user)
     return nil unless result

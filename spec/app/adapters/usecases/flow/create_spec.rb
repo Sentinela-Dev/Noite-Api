@@ -27,10 +27,7 @@ RSpec.describe Flow::Create do
 
   context 'Valid infos' do
     it 'all correct' do
-      puts "VALID PARAMS #{valid_flow_params}"
-      puts @user.to_hash
       flow = Flow::Create.new(params: valid_flow_params).call
-      puts flow
 
       expect(flow.class).to be(FlowModel)
       expect(flow.owner).to eq(@user.email)
