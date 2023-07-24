@@ -30,9 +30,9 @@ class UserRepository
 
   def insert(user)
     Changeset::Validate.new(UserModel, user)
-                              .cast(:email, :name)
-                              .presence(%i[email name])
-                              .call
+                       .cast(:email, :name, :password)
+                       .presence(%i[email name password])
+                       .call
     # TODO: Validate required fields
     result = @collection.insert_one(user)
     return nil unless result

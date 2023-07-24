@@ -30,7 +30,7 @@ module User
 
     def can_register?(user)
       raise StandardError, 'Email alwary exists' if @user_repository.email_exists?(user.email)
+      raise StandardError, 'Empty password' unless user.password || user.password == ''
     end
   end
 end
-

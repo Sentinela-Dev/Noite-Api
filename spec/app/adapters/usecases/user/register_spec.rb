@@ -32,8 +32,14 @@ RSpec.describe User::Register do
       expect { user.call }.to raise_error(StandardError, 'Email alwary exists')
     end
 
-    it 'without required infos' do
-      user = User::Register.new(params: { 'name': 'morte', 'password': '123' })
+    it 'without password' do
+      user = User::Register.new(params: { 'name': 'morte', 'email': 'morte@death.com' })
+
+      expect { user.call }.to raise_error(StandardError, 'Empty password')
+    end
+
+    it 'without email' do
+      user = User::Register.new(params: { 'name': 'morte', 'password': 'something123' })
 
       expect { user.call }.to raise_error(StandardError, 'Nil fields ["email"]')
     end
