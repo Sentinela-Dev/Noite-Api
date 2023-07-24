@@ -2,7 +2,7 @@
 
 require './app/models/user_model'
 require './app/repositories/user_repository'
-require './app/usecases/encrypt/index'
+require './app/providers/encrypt_provider'
 
 module User
   class Register
