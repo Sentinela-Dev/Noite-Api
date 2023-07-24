@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './app/adapters/usecases/auth/index'
+require './app/usecases/auth/index'
 
 ## AuthService
 module AuthHelper
