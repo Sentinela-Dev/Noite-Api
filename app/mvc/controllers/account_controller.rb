@@ -6,6 +6,10 @@ require './app/usecases/user/index'
 
 ## AccountController
 class AccountController < ApplicationController
+  before do
+    content_type :json
+  end
+
   get '/' do
     authenticate!
     return p 'sarve'
@@ -27,7 +31,7 @@ class AccountController < ApplicationController
     end
   end
 
-  post '/new-account' do
+  post '/register' do
     request_body = request.body.read
     data = JSON.parse(request_body, symbolize_names: true)
 

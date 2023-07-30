@@ -10,3 +10,4 @@ Dir.glob('./app/mvc/{helpers,controllers}/*.rb').each { |file| require file }
 
 # Routes
 map('/account') { run AccountController }
+map('/boards') { run FlowController }

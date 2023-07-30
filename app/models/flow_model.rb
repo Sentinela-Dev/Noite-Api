@@ -33,6 +33,30 @@ class FlowModel
     }
   end
 
+  def info
+    {
+      name:,
+      description:,
+      owner:,
+      tables:,
+      edges:,
+      can_access:,
+      created_at:,
+      updated_at:
+    }
+  end
+
+  def basic_info
+    {
+      name:,
+      description:,
+      owner:,
+      can_access:,
+      created_at:,
+      updated_at:
+    }
+  end
+
   def to_db
     {
       name:,
@@ -40,7 +64,9 @@ class FlowModel
       owner:,
       tables:,
       edges:,
-      can_access:
+      can_access:,
+      created_at:,
+      updated_at:
     }
   end
 end

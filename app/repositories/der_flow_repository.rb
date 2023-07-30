@@ -16,6 +16,14 @@ class DerFlowRepository
     find_by_id(result.inserted_id)
   end
 
+  def update_tables(id, tables)
+    collection.update_one({ _id: BSON::ObjectId(id) }, { '$set' => { tables:, updated_at: Time.now.utc } })
+  end
+
+  def update_edges(id, edges)
+    collection.update_one({ _id: BSON::ObjectId(id) }, { '$set' => { edges:, updated_at: Time.now.utc } })
+  end
+
   def find_by_id(id)
     result = @collection.find({ "_id": BSON::ObjectId(id) }).limit(1).first
 
