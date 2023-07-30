@@ -3,7 +3,7 @@
 require_relative 'application_controller'
 require './app/usecases/der_flow/index'
 
-## AccountController
+## FlowController
 class FlowController < ApplicationController
   before do
     content_type :json
@@ -13,7 +13,7 @@ class FlowController < ApplicationController
     authenticate!
 
     flows = Flow::Select.new.list_all(@current_user)
-    return { data: flows.map(&:basic_info) }.to_json
+    { data: flows.map(&:basic_info) }.to_json
   end
 
   post '/create' do
@@ -44,9 +44,9 @@ class FlowController < ApplicationController
                                  .with_edges(data[:edges])
                                  .call
 
-      return updated_flow.info.to_json
+      updated_flow.info.to_json
     rescue StandardError => e
-      return p e
+      p e
     end
   end
 end
