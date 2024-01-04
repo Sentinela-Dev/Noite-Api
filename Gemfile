@@ -26,3 +26,5 @@ group :development do
 end
 
 gem 'simplecov', require: false, group: :test
+
+gem 'thin', '~> 1.8'

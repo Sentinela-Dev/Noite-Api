@@ -2,7 +2,7 @@
 
 require './config/mongo_database'
 require './app/models/user_model'
-require './lib/changeset/index'
+require './utils/changeset'
 
 ## UserRepository
 class UserRepository
@@ -29,9 +29,9 @@ class UserRepository
   end
 
   def insert(user)
-    u = Changeset::Validate.new(UserModel, user)
-                           .cast(:email, :name, :password)
-                           .presence(%i[email name password])
+    u = Changeset::Validate.new(user)
+                           .cast(%i[email name password])
+                           .required(%i[email name password])
                            .call
 
     result = @collection.insert_one(u.to_hash)

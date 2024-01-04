@@ -41,7 +41,7 @@ RSpec.describe User::Register do
     it 'without email' do
       user = User::Register.new(params: { 'name': 'morte', 'password': 'something123' })
 
-      expect { user.call }.to raise_error(StandardError, 'Nil fields ["email"]')
+      expect { user.call }.to raise_error(ChangesetValidationException)
     end
   end
 end
