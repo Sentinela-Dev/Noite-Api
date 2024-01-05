@@ -7,9 +7,12 @@ Dotenv.load
 module MongoDatabase
   def self.database_connection
     database_name = 'noite_api'
+
+    connection_string = ENV['MONGODB_CONNECTION_STRING']
+
     database_url = case ENV['RACK_ENV']
                    when 'production'
-                     "mongodb+srv://#{ENV['MONGO_USERNAME']}:#{ENV['MONGO_PASSWORD']}@#{ENV['MONGO_HOST']}/#{database_name}?retryWrites=true&w=majority&authSource=admin"
+                     connection_string
                    when 'test'
                      "mongodb://root:example@127.0.0.1:27017/#{database_name}_test?serverSelectionTimeoutMS=2000&authSource=admin"
                    else
