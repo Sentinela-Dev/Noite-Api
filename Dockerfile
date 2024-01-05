@@ -6,6 +6,6 @@ ADD . /app
 
 RUN bundle install
 
-EXPOSE 3000
+EXPOSE 80
 
-CMD ["bundle", "exec", "thin", "start"]
+CMD ["bundle", "exec", "thin", "start", "-p", "80"]
