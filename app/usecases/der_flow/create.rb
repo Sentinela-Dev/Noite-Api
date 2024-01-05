@@ -13,6 +13,11 @@ module Flow
     end
 
     def call
+      @params = Changeset::Validate.new(@params)
+                                   .cast(%i[name description owner tables edges can_access])
+                                   .required(%i[name description owner tables edges can_access])
+                                   .call
+
       flow = @flow.new(@params)
 
       flow.created_at = Time.now.utc

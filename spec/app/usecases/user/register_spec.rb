@@ -35,7 +35,7 @@ RSpec.describe User::Register do
     it 'without password' do
       user = User::Register.new(params: { 'name': 'morte', 'email': 'morte@death.com' })
 
-      expect { user.call }.to raise_error(StandardError, 'Empty password')
+      expect { user.call }.to raise_error(ChangesetValidationException)
     end
 
     it 'without email' do

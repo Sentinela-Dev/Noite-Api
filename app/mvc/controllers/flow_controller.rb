@@ -2,6 +2,7 @@
 
 require_relative 'application_controller'
 require './app/usecases/der_flow/index'
+require './utils/changeset'
 
 ## FlowController
 class FlowController < ApplicationController
@@ -21,15 +22,17 @@ class FlowController < ApplicationController
 
     request_body = request.body.read
     data = JSON.parse(request_body, symbolize_names: true)
-    params = {
-      name: data[:name],
-      description: data[:description],
-      owner: @current_user.email
-    }
 
-    flow = Flow::Create.new(params:).call
+    data[:owner] = @current_user.email
 
-    flow.to_hash.to_json
+    begin
+      flow = Flow::Create.new(params: data).call
+
+      flow.to_hash.to_json
+    rescue ChangesetValidationException => e
+      puts e
+      puts e.errors
+    end
   end
 
   post '/update/:id' do |id|

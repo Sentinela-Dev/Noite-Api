@@ -29,12 +29,7 @@ class UserRepository
   end
 
   def insert(user)
-    u = Changeset::Validate.new(user)
-                           .cast(%i[email name password])
-                           .required(%i[email name password])
-                           .call
-
-    result = @collection.insert_one(u.to_hash)
+    result = @collection.insert_one(user.to_hash)
     return nil unless result
 
     find_by_id(result.inserted_id)
