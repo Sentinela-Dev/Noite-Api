@@ -26,6 +26,8 @@ RSpec.describe Flow::Select do
     @flow = Flow::Create.new(params: {
                                name: 'something',
                                description: 'tal',
+                               tables: [],
+                               edges: [],
                                owner: @owner.email,
                                can_access: [@guest.email]
                              }).call
@@ -33,6 +35,8 @@ RSpec.describe Flow::Select do
     @flow2 = Flow::Create.new(params: {
                                 name: 'cuca',
                                 description: 'tal',
+                                tables: [],
+                               edges: [],
                                 owner: @owner.email,
                                 can_access: [@guest.email]
                               }).call

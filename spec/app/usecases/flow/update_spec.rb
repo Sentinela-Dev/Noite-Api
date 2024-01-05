@@ -22,6 +22,9 @@ RSpec.describe Flow::Create do
     {
       name: 'something',
       description: 'tal',
+      tables: [],
+      edges: [],
+      can_access: [@user.email],
       owner: @user.email
     }
   end

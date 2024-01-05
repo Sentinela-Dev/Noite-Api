@@ -8,4 +8,10 @@ class ChangesetValidationException < StandardError
     @errors = errors
     super(msg)
   end
+
+  def to_s
+    print(@errors)
+    errs = @errors.join("\n")
+    "#{msg}\n---------------\n#{errs}"
+  end
 end
