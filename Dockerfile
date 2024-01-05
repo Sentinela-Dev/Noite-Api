@@ -8,4 +8,4 @@ RUN bundle install
 
 EXPOSE 80
 
-CMD ["bundle", "exec", "thin", "start", "-p", "80"]
+ENTRYPOINT ["bundle", "exec", "thin", "start", "-p", "80"]
