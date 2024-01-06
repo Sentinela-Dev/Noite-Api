@@ -41,7 +41,7 @@ class DerFlowRepository
                                })
 
     return [] unless results
-    return [] if results.count == 0
+    return [] if results.count.zero?
 
     results.map do |result|
       FlowModel.new(result)

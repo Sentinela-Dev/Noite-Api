@@ -48,6 +48,7 @@ class FlowModel
 
   def basic_info
     {
+      id:,
       name:,
       description:,
       owner:,

@@ -17,6 +17,14 @@ class FlowController < ApplicationController
     { data: flows.map(&:basic_info) }.to_json
   end
 
+  get '/:id' do |id|
+    authenticate!
+
+    flow = Flow::Select.new.get_flow(id:, user: @current_user)
+
+    flow.to_hash.to_json
+  end
+
   post '/create' do
     authenticate!
 
